@@ -41,7 +41,7 @@ export default class BoatSearchResults extends LightningElement {
   
   // this function must update selectedBoatId and call sendMessageService
   updateSelectedTile(evt) { 
-   console.log(evt)
+    this.selectedBoatId = evt.detail;
 
   }
   
