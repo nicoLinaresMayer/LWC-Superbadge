@@ -14,7 +14,7 @@ public with sharing class BoatDataService {
         if (String.isNotBlank(boatTypeId)) {
             query += ' WHERE BoatType__c = :boatTypeId';
         }
-        query += ' WITH SECURITY_ENFORCED ';
+        query += ' WITH SECURITY_ENFORCED';
         return Database.query(query);
     }
 
@@ -96,14 +96,20 @@ public with sharing class BoatDataService {
         query += ' WITH SECURITY_ENFORCED ORDER BY DISTANCE(Geolocation__c, GEOLOCATION(:latitude, :longitude), \'mi\') LIMIT 10';
         return JSON.serialize(Database.query(query));
     }
-
+    @AuraEnabled
     public static String updateBoatList(Object data){
-        List<Boat__c> boatsForUpdate = (List<Boat__c>) JSON.deserialize(
-            JSON.serialize(data),
-            List<Boat__c>.class
-        );
+        try{
+            List<Boat__c> boatsForUpdate = (List<Boat__c>) JSON.deserialize(
+                JSON.serialize(data),
+                List<Boat__c>.class
+            );
+            update boatsForUpdate;
+        }
         
-        update boatsForUpdate;
+        catch(Exception e){
+            return e.getMessage();
+        }
+        
         return 'Success: Boats updated successfully';
     }
 }

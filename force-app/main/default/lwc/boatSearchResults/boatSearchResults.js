@@ -1,18 +1,26 @@
 import { LightningElement ,api, wire} from 'lwc';
 import getBoats from '@salesforce/apex/BoatDataService.getBoats';
+import updateBoatList from '@salesforce/apex/BoatDataService.updateBoatList';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 const SUCCESS_TITLE = 'Success';
 const MESSAGE_SHIP_IT     = 'Ship it!';
 const SUCCESS_VARIANT     = 'success';
 const ERROR_TITLE   = 'Error';
 const ERROR_VARIANT = 'error';
+
 export default class BoatSearchResults extends LightningElement {
   selectedBoatId;
-  columns = [];
   @api boatTypeId = '';
   boats;
   isLoading = false;
   error= undefined;
-  
+  columns = [
+    {label : 'Name' , fieldName : 'Name', editable: true},
+    {label : 'Length' , fieldName : 'Length__c',editable: true},
+    {label : 'Price' , fieldName : 'Price__c',editable: true},
+    {label : 'Description' , fieldName : 'Description__c',editable: true}
+  ]
+
   // wired message context
   messageContext;
   // wired getBoats method 
@@ -42,6 +50,7 @@ export default class BoatSearchResults extends LightningElement {
   // this function must update selectedBoatId and call sendMessageService
   updateSelectedTile(evt) { 
     this.selectedBoatId = evt.detail;
+    console.log(this.selectedBoatId);
 
   }
   
@@ -57,11 +66,26 @@ export default class BoatSearchResults extends LightningElement {
   // clear lightning-datatable draft values
   handleSave(event) {
     // notify loading
-    const updatedFields = event.detail.draftValues;
+    const updatedFields = event.detail.draftValues.map(element=>{
+     return {
+        Id : element.Id,
+        Name : element.Name,
+        Length__c : element.Length__c,
+        Price__c : element.Price__c,
+        Description__c : element.Description__c 
+     }
+    });
     // Update the records via Apex
     updateBoatList({data: updatedFields})
-    .then(() => {})
-    .catch(error => {})
+    .then(() => {
+      const evt = new ShowToastEvent({
+        title: SUCCESS_TITLE,
+        message: MESSAGE_SHIP_IT,
+        variant: SUCCESS_VARIANT,
+    });
+    this.dispatchEvent(evt);
+    })
+    .catch(error => {console.log(error)})
     .finally(() => {});
   }
   // Check the current value of isLoading before dispatching the doneloading or loading custom event
