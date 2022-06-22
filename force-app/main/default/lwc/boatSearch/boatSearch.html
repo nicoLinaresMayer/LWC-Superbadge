@@ -11,8 +11,8 @@
       </lightning-layout-item>
       <!-- Bottom -->
       <lightning-layout-item size="12" class="slds-p-top_small slds-is-relative">
-        <lightning-spinner onloading={handleLoading} ondoneloading={handleDoneLoading} if:true={isLoading} alternative-text="Loading" size="small"></lightning-spinner>
-        <c-boat-search-results  boat-type-id={boatType}></c-boat-search-results>
+        <lightning-spinner if:true={isLoading} alternative-text="Loading" size="small"></lightning-spinner>
+        <c-boat-search-results  ondoneloading={handleDoneLoading} onloading={handleLoading} if:false={isLoading} boat-type-id={boatType}></c-boat-search-results>
         <!--  -->
       </lightning-layout-item>
     </lightning-layout>
