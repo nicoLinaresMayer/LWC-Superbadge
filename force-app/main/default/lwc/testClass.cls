@@ -36,7 +36,31 @@ public with sharing class UserBadgeService {
                 
             }
         }
-
+	    // OTRO COMENTARIO
+	    for(){
+	    [SELECT]
+	    };
+	    
+	    for(){
+	    [ SELECT]
+	    };
+	    
+	    for(){
+	    [select]
+	    };
+	    
+	    for(){
+	    [ select]
+	    }
+	    
+	    
+	/* COMENTARIO
+	
+	
+	
+	
+	
+	*/
         //Query user trailmix to update counters and put them in a map by key
         Map<String, trailheadapp__User_Trailmix__c> userTrailmixByKey = new Map<String, trailheadapp__User_Trailmix__c>();
 
