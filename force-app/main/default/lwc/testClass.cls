@@ -60,6 +60,11 @@ public with sharing class UserBadgeService {
 	
 	
 	
+	
+	
+	
+	
+	
 	*/
         //Query user trailmix to update counters and put them in a map by key
         Map<String, trailheadapp__User_Trailmix__c> userTrailmixByKey = new Map<String, trailheadapp__User_Trailmix__c>();
