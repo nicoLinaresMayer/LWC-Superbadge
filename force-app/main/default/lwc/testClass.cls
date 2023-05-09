@@ -53,6 +53,10 @@ public with sharing class UserBadgeService {
 	    [ select]
 	    }
 	    
+	    for(){
+	    [ select]
+	    }
+	    
 	    
 	/* COMENTARIO
 	
@@ -63,6 +67,13 @@ public with sharing class UserBadgeService {
 	
 	
 	
+	
+	
+	
+	asd
+	dsa
+	
+	asd
 	
 	
 	*/
