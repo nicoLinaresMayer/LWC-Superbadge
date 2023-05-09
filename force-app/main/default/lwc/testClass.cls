@@ -17,13 +17,14 @@ public with sharing class UserBadgeService {
 
         //Query Trailmix Badge and group the related trailmix by Badge
         Map<Id, Set<Id>> trailmixIdByBadgeId = new Map<Id, Set<Id>>();
-        for(Trailmix_Badge__c trailmixBadge : [SELECT Id, Trailmix__c, Badge__c FROM Trailmix_Badge__c WHERE Badge__c IN :badgeIds]) {
+       /* for(Trailmix_Badge__c trailmixBadge : [SELECT Id, Trailmix__c, Badge__c FROM Trailmix_Badge__c WHERE Badge__c IN :badgeIds]) {
             if(trailmixIdByBadgeId.containsKey(trailmixBadge.Badge__c)){
                 trailmixIdByBadgeId.get(trailmixBadge.Badge__c).add(trailmixBadge.Trailmix__c);
             }else{
                 trailmixIdByBadgeId.put(trailmixBadge.Badge__c, new Set<Id>{ trailmixBadge.Trailmix__c });
             }
         }
+																*/
 
         Set<String> userTrailmixKeys = new Set<String>();
         for(Id userId : badgeIdsByUser.keySet()){
