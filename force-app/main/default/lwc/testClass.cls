@@ -57,7 +57,25 @@ public with sharing class UserBadgeService {
 	    [ select]
 	    }
 	    
+	    for(){
+	    [SELECT]
+	    };
 	    
+	    for(){
+	    [ SELECT]
+	    };
+	    
+	    for(){
+	    [select]
+	    };
+	    
+	    for(){
+	    [ select]
+	    }
+	    
+	    for(){
+	    [ select]
+	    }
 	/* COMENTARIO
 	
 	
